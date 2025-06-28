@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Plant Identification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Test_04.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Plant Identification</h1>
+        </div>
+        <section id="home" class="search-section">
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for a plant species..." autocomplete="off">
+                <button onclick="searchPlant()">Search</button>
+            </div>
+        </section>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="upload-section">
+        <div class="upload-container">
+            <h2>Upload a Plant Image</h2>
+            <input type="file" id="image" accept="image/*" style="display:none;" onchange="handleFileSelect(event)"> 
+            <button onclick="document.getElementById('image').click();">Choose File</button> 
+            <span id="fileName" style="margin-left: 10px;"></span> 
+            <br>
+            <button onclick="uploadImage()">Identify Plant</button>
+            <div id="dropArea" class="drop-area" ondragover="allowDrag(event)" ondrop="handleDrop(event)">
+                <p>Drag & Drop your image here</p>
+                <img id="imagePreview" src="" alt="Image Preview" style="display:none; max-width: 300px; max-height: 300px; margin-top: 20px;"> 
+            </div> 
+        </div> 
+    </section>
+    
+
+    <section id="results" class="results-section">
+        <div id="plantDetails" style="display:none;">
+            <h1 id="plantName"></h1>
+            <img id="plantImageDisplay" src="" alt="Plant Image">
+            <p id="plantDescription"></p>
+        </div>
+        
+        <button id="reportIssueBtn" style="display:none;" onclick="showForm()">Report an Issue</button>
+    </section>
+    
+    <div id="reportForm" style="display:none;">
+        <h2>Report an Issue</h2>
+        <form id="issueForm">
+            <label for="description">Describe your problem:</label>
+            <textarea id="description" name="description" required></textarea>
+            <br>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <br>
+            <label for="issueImage">Attach an image (optional):</label>
+            <input type="file" id="issueImage" accept="image/*">
+            <br>
+            <button type="button" onclick="submitIssue()">Send</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Plant Identification</p>
+    </footer>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <p id="popup-text">Sorry, we couldn't identify the plant. Please try uploading another image or re-upload a clearer one.</p>
+        </div>
+    </div>
+    <script src="Test_04.js"></script>
+</body>
+</html>
